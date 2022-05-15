@@ -66,11 +66,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       })
       .catch((err) => {
         setError(err)
-        toast.error(
-          `Something went wrong !!!! ${
-            process.env.NODE_ENV === 'development' && err
-          }`
-        )
+        toast.error(`Something went wrong !!!! ${err}`)
       })
       .finally(() => {
         setLoading(false)
@@ -87,11 +83,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       })
       .catch((err) => {
         setError(err)
-        toast.error(
-          `Something went wrong ${
-            process.env.NODE_ENV === 'development' && err
-          }`
-        )
+        toast.error(`Something went wrong ${err}`)
       })
       .finally(() => {
         setLoading(false)
@@ -105,11 +97,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       })
       .catch((err) => {
         setError(err)
-        toast.error(
-          `Something went wrong ${
-            process.env.NODE_ENV === 'development' && err
-          }`
-        )
+        toast.error(`Something went wrong ${err}`)
       })
       .finally(() => {
         setLoading(false)
