@@ -4,21 +4,30 @@ import { Movie, Element, Genre } from '../typings'
 import { Modal as MuiModal } from '@mui/material'
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import { modalState, movieState } from '../atoms/modalAtom'
+import { modalState, movieState, trailerState } from '../atoms/modalAtom'
 import { toast } from 'react-toastify'
 import ReactPlayer from 'react-player/lazy'
 import { FaPlay } from 'react-icons/fa'
 import { PlusIcon, ThumbUpIcon, VolumeUpIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router'
 
 const Modal = () => {
+  const router = useRouter()
   const [showModal, setShowModal] = useRecoilState(modalState)
   const [movie, setMovie] = useRecoilState(movieState)
-  const [trailer, setTrailer] = useState('')
+  const [trailer, setTrailer] = useRecoilState(trailerState)
   const [genre, setGenre] = useState<Genre[]>([])
   const [muted, setMuted] = useState<boolean>(false)
 
   function handleClose() {
     setShowModal(false)
+    setTrailer('')
+  }
+
+  function handlePlay() {
+    setShowModal(false)
+    router.push(`/movie/${movie?.original_title}`)
+    console.log(trailer, movie)
   }
 
   useEffect(() => {
@@ -50,8 +59,6 @@ const Modal = () => {
     }
     fetchMovie()
   }, [movie])
-
-  console.log(trailer, genre)
   return (
     <>
       <MuiModal
@@ -81,8 +88,12 @@ const Modal = () => {
             />
             <div className="absolute bottom-10 flex w-full items-center justify-between px-10">
               <div className="flex space-x-2">
-                <button className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-[#e6e6e6]">
-                  <FaPlay className="h-7 w-7 text-black" /> Play
+                <button
+                  className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-[#e6e6e6]"
+                  onClick={handlePlay}
+                >
+                  <FaPlay className="h-7 w-7 text-black" />
+                  Play
                 </button>
                 <button className="modalButton">
                   <PlusIcon className="h-7 w-7" />
