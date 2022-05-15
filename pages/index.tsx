@@ -1,10 +1,15 @@
 import Head from 'next/head'
 import requests from '../utils/requests'
 import { Movie } from '../typings'
+import { ThreeCircles } from 'react-loader-spinner'
 // components
 import Banner from '../components/Banner'
 import Header from '../components/Header'
 import Row from '../components/Row'
+import useAuth from '../hooks/useAuth'
+import { useRecoilValue } from 'recoil'
+import { modalState } from '../atoms/modalAtom'
+import Modal from '../components/Modal'
 
 interface Props {
   netflixOriginals: Movie[]
@@ -27,10 +32,19 @@ const Home = ({
   topRated,
   trendingNow,
 }: Props) => {
+  const { loading } = useAuth()
+  const showModal = useRecoilValue(modalState)
+  if (loading) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <ThreeCircles color="red" height={110} width={110} />
+      </div>
+    )
+  }
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
       <Head>
-        <title>Netflix Clone</title>
+        <title>Home | Netflix Clone</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
@@ -48,7 +62,7 @@ const Home = ({
           <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
-      {/* modal */}
+      {showModal && <Modal />}
     </div>
   )
 }
