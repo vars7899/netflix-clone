@@ -7,7 +7,7 @@ import { User } from 'firebase/auth'
 import payments from '../lib/stripe'
 
 const useSubscription = (user: User | null) => {
-  const [subscrition, setSubscription] = useState<Subscription | null>(null)
+  const [subscription, setSubscription] = useState<Subscription | null>(null)
 
   useEffect(() => {
     if (!user) return
@@ -22,7 +22,7 @@ const useSubscription = (user: User | null) => {
     })
   }, [user])
 
-  return subscrition
+  return subscription
 }
 
 export default useSubscription

@@ -91,7 +91,7 @@ export const getServerSideProps = async () => {
     activeOnly: true,
   })
     .then((res) => res)
-    .catch((error) => console.log(error))
+    .catch((error) => console.log(error.message))
   const [
     netflixOriginals,
     trendingNow,

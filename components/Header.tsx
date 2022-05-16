@@ -43,14 +43,14 @@ const Header: FC = () => {
         <SearchIcon className="hidden h-6 w-6 sm:inline " />
         <p className="hidden lg:inline">Kids</p>
         <BellIcon className="h6 w-6" />
-        {/* <Link href="/account"> */}
-        <img
-          src="https://rb.gy/g1pwyx"
-          alt="profileAvatar"
-          className="cursor-pointer rounded"
-          onClick={() => logout()}
-        />
-        {/* </Link> */}
+        <Link href="/account">
+          <img
+            src="https://rb.gy/g1pwyx"
+            alt="profileAvatar"
+            className="cursor-pointer rounded"
+            // onClick={() => logout()}
+          />
+        </Link>
       </div>
     </header>
   )
