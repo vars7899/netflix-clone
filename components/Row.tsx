@@ -1,13 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
-
 import { Movie } from '../typings'
 import Thumbnail from './Thumbnail'
+import { DocumentData } from 'firebase/firestore'
 
 interface Props {
   title: string
-  // movies: Movie[] | DocumentData
-  movies: Movie[]
+  movies: Movie[] | DocumentData[]
 }
 
 const Row = ({ title, movies }: Props) => {

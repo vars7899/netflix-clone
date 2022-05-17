@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from 'react'
 import { BellIcon, SearchIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
-import useAuth from '../hooks/useAuth'
+import BasicMenu from './BasicMenu'
 
 const Header: FC = () => {
   const [isScroll, setIsScroll] = useState<Boolean>(false)
-  const { logout } = useAuth()
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -31,6 +31,7 @@ const Header: FC = () => {
           height={100}
           className="cursor-pointer object-contain"
         />
+        <BasicMenu />
         <ul className="hidden space-x-4 md:flex">
           <li className="headerLink">Home</li>
           <li className="headerLink">TV Shows</li>
@@ -48,7 +49,6 @@ const Header: FC = () => {
             src="https://rb.gy/g1pwyx"
             alt="profileAvatar"
             className="cursor-pointer rounded"
-            // onClick={() => logout()}
           />
         </Link>
       </div>
